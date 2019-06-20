@@ -1,13 +1,13 @@
-# Project Name
+# author-service
 
-> Project description
+> This service stores author information for display on an author page, book page, etc.
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/the-librarianshr/author-service
+  - https://github.com/the-librarianshr/related-books-service
+  - https://github.com/the-librarianshr/repo
+  - https://github.com/the-librarianshr/repo
 
 ## Table of Contents
 
