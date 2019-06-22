@@ -1,7 +1,7 @@
 const express = require('express');
 const port = 3002;
 const app = express();
-const db = require('/../database/index.js');
+const db = require('../database/index');
 
 const morgan = require('morgan');
 
@@ -9,8 +9,8 @@ app.use(morgan('dev'));
 
 app.use(express.static(__dirname + '/../public'));
 
-app.get('/', (req, res) => {
-  db.getHashKeys();
+app.get('/db', (req, res) => {
+  db.authenticate();
   res.end();
 });
 
