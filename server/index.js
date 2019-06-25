@@ -10,7 +10,7 @@ app.use(morgan('dev'));
 app.use(express.static(__dirname + '/../public'));
 
 app.get('/db', (req, res) => {
-  db.authenticate();
+  // db.authenticate();
   res.end();
 });
 
