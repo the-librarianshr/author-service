@@ -23,7 +23,8 @@
 
 An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
-- Node 6.13.0
+- Node 12.4.0
+- Postgresql 11.3
 - etc
 
 ## Development
@@ -37,3 +38,4 @@ npm install -g webpack
 npm install
 ```
 
+Download and install Postgresql per installation instructions (here)[https://www.postgresql.org/download/]
