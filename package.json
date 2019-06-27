@@ -8,6 +8,7 @@
     "node": ">=6.13.0"
   },
   "scripts": {
+    "seed": "node seed-script.js",
     "build": "webpack -d --watch",
     "start": "nodemon server/index.js"
   },
@@ -18,7 +19,9 @@
     "@babel/preset-es2015": "^7.0.0-beta.53",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
+    "bluebird": "^3.5.5",
     "express": "^4.17.1",
+    "faker": "^4.1.0",
     "jquery": "^3.4.1",
     "mongodb": "^3.2.7",
     "morgan": "^1.9.1",
@@ -27,7 +30,6 @@
     "pg-promise": "^8.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "sequelize": "^5.8.12",
     "webpack": "^4.34.0"
   },
   "devDependencies": {

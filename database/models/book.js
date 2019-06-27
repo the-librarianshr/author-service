@@ -1,28 +1,13 @@
-module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('book', {
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    author: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'authors',
-        key: 'id'
-      }
-    },
-    information: {
-      type: DataTypes.STRING(800),
-      allowNull: false
-    },
-    numberOfReviews: {
-      type: DataTypes.INTEGER
-    },
-    averageRating: {
-      type: DataTypes.FLOAT
-    },
-    numberOfRatings: {
-      type: DataTypes.INTEGER
-    },
-  });
+module.exports = () => {
+  return (
+    `CREATE TABLE IF NOT EXISTS books (
+      id              SERIAL PRIMARY KEY,
+      title           VARCHAR(255) NOT NULL,
+      author          INTEGER REFERENCES authors(id),
+      information     VARCHAR(800),
+      numberOfReviews INTEGER,
+      averageRating   FLOAT,
+      numberofRatings INTEGER
+    );`
+  );
 };
