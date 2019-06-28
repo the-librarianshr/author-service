@@ -1,20 +1,26 @@
-const Sequelize = require('sequelize');
-const Model = Sequelize.Model;
+const promise = require('bluebird');
+const initOpts = { promiseLib: promise };
+const pgp = require('pg-promise')(initOpts);
 const config = require('../config').database;
-const Author = require('./models/author');
-const Book = require('./models/book');
-const Review = require('./models/review');
-
-const sequelize = new Sequelize(config.database, config.login, config.password, {
+const connection = {
   host: config.host,
   port: config.port,
-  dialect: config.dialect
-});
+  database: config.database,
+  user: config.login,
+  password: config.password
+};
 
-Author(sequelize, Sequelize.DataTypes);
-Book(sequelize, Sequelize.DataTypes);
-Review(sequelize, Sequelize.DataTypes);
+const db = pgp(connection);
 
-sequelize.sync();
+const author = require('./models/author');
+const book = require('./models/book');
+const review = require('./models/review');
+
+db.any(author())
+  .then(() => console.log('Authors initialized'));
+db.any(book())
+  .then(() => console.log('Books initialized'));
+db.any(review())
+  .then(() => console.log('Reviews initialized'));
 
 // module.exports.authenticate = auth;
