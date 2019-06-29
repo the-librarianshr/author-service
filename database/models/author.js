@@ -5,7 +5,8 @@ module.exports = () => {
       firstName       VARCHAR(255) NOT NULL,
       lastName        VARCHAR(255),
       bio             VARCHAR(800),
-      followers       INTEGER
+      followers       INTEGER,
+      avatar          VARCHAR(800)
     );`
   );
 };

@@ -17,10 +17,26 @@ const book = require('./models/book');
 const review = require('./models/review');
 
 db.any(author())
-  .then(() => console.log('Authors initialized'));
-db.any(book())
-  .then(() => console.log('Books initialized'));
-db.any(review())
+  .then(() => {
+    console.log('Authors initialized');
+    return db.any(book());
+  })
+  .then(() => {
+    console.log('Books initialized');
+    return db.any(review());
+  })
   .then(() => console.log('Reviews initialized'));
 
-// module.exports.authenticate = auth;
+let getAuthorById = (id, callback) => {
+  db.any(`SELECT * FROM authors WHERE id = ${id}`)
+    .then(author => {
+      callback(null, author);
+    })
+    .catch(err => {
+      callback(err, null);
+    });
+};
+
+module.exports = {
+  getAuthorById: getAuthorById
+};

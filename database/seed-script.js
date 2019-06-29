@@ -27,7 +27,8 @@ fsAsync.writeFileAsync(output, 'TRUNCATE books, reviews, authors CASCADE;')
         firstname: '\'' + replaceSingleQuotes(faker.name.firstName()) + '\'',
         lastname: '\'' + replaceSingleQuotes(faker.name.lastName()) + '\'',
         bio: '\'' + replaceSingleQuotes(faker.lorem.paragraphs(2)) + '\'',
-        followers: randomIntFromOne(1000)
+        followers: randomIntFromOne(1000),
+        avatar: '\'' + faker.image.people(50, 50) + '\''
       };
 
       fs.appendFileSync(output, insertBuilder('authors', author));
@@ -72,4 +73,7 @@ fsAsync.writeFileAsync(output, 'TRUNCATE books, reviews, authors CASCADE;')
         console.log(stdout);
       }
     });
+  })
+  .catch(err => {
+    console.log(err);
   });
