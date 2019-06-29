@@ -3,6 +3,8 @@ const fs = require('fs');
 const promise = require('bluebird');
 const output = __dirname + '/seed.sql';
 const fsAsync = promise.promisifyAll(fs);
+const exec = require('child_process').exec;
+const config = require('../config');
 
 let randomIntFromOne = max => {
   return Math.ceil(Math.random() * max);
@@ -61,5 +63,13 @@ fsAsync.writeFileAsync(output, 'TRUNCATE books, reviews, authors CASCADE;')
 
       fs.appendFileSync(output, insertBuilder('reviews', review));
     }
+  })
+  .then(() => {
+    exec(`psql ${config.database.database} < ${__dirname}/seed.sql`, (stdout, stderr) => {
+      if (stderr) {
+        console.log(stderr);
+      } else {
+        console.log(stdout);
+      }
+    });
   });
-
