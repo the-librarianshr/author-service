@@ -8,7 +8,7 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "seed": "node seed-script.js",
+    "seed": "node ./database/seed-script.js",
     "build": "webpack -d --watch",
     "start": "nodemon server/index.js"
   },
