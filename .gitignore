@@ -26,3 +26,4 @@ dist/
 
 /public/bundle.js
 config.js
+/database/seed.sql
