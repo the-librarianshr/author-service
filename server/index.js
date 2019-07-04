@@ -11,11 +11,18 @@ app.use(express.static(__dirname + '/../public'));
 
 app.get('/authors/:id', (req, res) => {
   let id = req.params.id;
-  db.getAuthorById(id, (err, data) => {
+  db.getAuthorById(id, (err, author) => {
     if (err) {
       res.end(JSON.stringify(err));
     } else {
-      res.end(JSON.stringify(data));
+      db.getBooksByAuthorId(id, (err, books) => {
+        if (err) {
+          res.end(JSON.stringify(err));
+        } else {
+          author.books = books;
+          res.end(JSON.stringify(author));
+        }
+      });
     }
   });
 });
