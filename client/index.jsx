@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
+import Author from './author.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <h1>This is running</h1>
+        <Author id='9' />
       </div>
     );
   }
