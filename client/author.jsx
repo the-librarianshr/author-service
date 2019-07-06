@@ -34,11 +34,15 @@ class Author extends React.Component {
 
   render () {
     return (
-      <div>
-        <div>{this.state.firstName + ' ' + this.state.lastName}</div>
-        <img src={this.state.avatar} />
+      <div class="author-spotlight">
+        <div class="author-header">
+          <img class="avatar" src={this.state.avatar} />
+          <div class="author-info">
+            <div class="name">{this.state.firstName + ' ' + this.state.lastName}</div>
+            <div class="followers">Followers: {this.state.followers}</div>
+          </div>
+        </div>
         <div>{this.state.bio}</div>
-        <h6>Followers: {this.state.followers}</h6>
       </div>
     );
   }
