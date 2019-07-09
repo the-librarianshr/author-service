@@ -17,10 +17,9 @@ class Author extends React.Component {
   componentDidMount() {
     $.ajax({
       method: 'GET',
-      url: `http://localhost:3002/authors/${this.props.id}`,
+      url: `http://localhost:3002/get-author/${this.props.id}`,
       contentType: 'application/json',
       success: (author) => {
-        author = JSON.parse(author);
         this.setState({
           firstName: author.firstname,
           lastName: author.lastname,
@@ -34,12 +33,12 @@ class Author extends React.Component {
 
   render () {
     return (
-      <div class="author-spotlight">
-        <div class="author-header">
-          <img class="avatar" src={this.state.avatar} />
-          <div class="author-info">
-            <div class="name">{this.state.firstName + ' ' + this.state.lastName}</div>
-            <div class="followers">Followers: {this.state.followers}</div>
+      <div className="author-spotlight">
+        <div className="author-header">
+          <img className="avatar" src={this.state.avatar} />
+          <div className="author-info">
+            <div className="name">{this.state.firstName + ' ' + this.state.lastName}</div>
+            <div className="followers">Followers: {this.state.followers}</div>
           </div>
         </div>
         <div>{this.state.bio}</div>

@@ -50,15 +50,20 @@ const StyledDiv = styled.div`
 class App extends React.Component {
   constructor(props) {
     super(props);
+    console.log(this.props.id);
   }
 
   render () {
     return (
       <StyledDiv>
-        <Author id='9' />
+        <Author id={this.props.id} />
       </StyledDiv>
     );
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+let authorID = document.URL.split('/');
+authorID = authorID.filter(element => element !== '');
+authorID = Number(authorID[authorID.length - 1]);
+
+ReactDOM.render(<App id={authorID} />, document.getElementById('author-app'));

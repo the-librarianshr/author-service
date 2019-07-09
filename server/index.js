@@ -9,9 +9,7 @@ const cors = require('cors');
 app.use(morgan('dev'));
 app.use(cors());
 
-app.use(express.static(__dirname + '/../public'));
-
-app.get('/authors/:id', (req, res) => {
+app.get('/get-author/:id', (req, res) => {
   let id = req.params.id;
   db.getAuthorById(id, (err, author) => {
     if (err) {
@@ -22,11 +20,15 @@ app.get('/authors/:id', (req, res) => {
           res.end(JSON.stringify(err));
         } else {
           author.books = books;
-          res.end(JSON.stringify(author));
+          res.json(author);
         }
       });
     }
   });
 });
+
+app.use('/authors/:id', express.static(__dirname + '/../public'));
+app.use(express.static(__dirname + '/../public'));
+
 
 app.listen(port, () => console.log(`App listening on port ${port}`));
