@@ -4,8 +4,10 @@ const app = express();
 const db = require('../database/index');
 
 const morgan = require('morgan');
+const cors = require('cors');
 
 app.use(morgan('dev'));
+app.use(cors());
 
 app.use(express.static(__dirname + '/../public'));
 
