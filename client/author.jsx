@@ -10,8 +10,13 @@ class Author extends React.Component {
       lastName: null,
       bio: null,
       avatar: null,
-      followers: null
+      followers: null,
+      truncated: true,
+      truncBio: null,
+      fullBio: null
     };
+
+    this.toggleTrunc = this.toggleTrunc.bind(this);
   }
 
   componentDidMount() {
@@ -20,15 +25,29 @@ class Author extends React.Component {
       url: `http://localhost:3002/get-author/${this.props.id}`,
       contentType: 'application/json',
       success: (author) => {
+        let truncatedBio = author.bio.slice(0, 180) + '...';
         this.setState({
           firstName: author.firstname,
           lastName: author.lastname,
-          bio: author.bio,
+          fullBio: author.bio,
           avatar: author.avatar,
-          followers: author.followers
+          followers: author.followers,
+          truncBio: truncatedBio,
+          bio: truncatedBio
         });
       }
     });
+  }
+
+  toggleTrunc (event) {
+    if (this.state.truncated) {
+      event.preventDefault();
+      this.setState({
+        bio: this.state.fullBio,
+        truncated: false
+      });
+      event.target.parentElement.removeChild(event.target);
+    }
   }
 
   render () {
@@ -41,7 +60,7 @@ class Author extends React.Component {
             <div className="followers">Followers: {this.state.followers}</div>
           </div>
         </div>
-        <div>{this.state.bio}</div>
+        <div>{this.state.bio} <a href="#" onClick={this.toggleTrunc} id="more-btn">More</a></div>
       </div>
     );
   }
