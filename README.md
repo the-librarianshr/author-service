@@ -17,7 +17,11 @@
 
 ## Usage
 
-> Some usage instructions
+Incoming get requests to '/authors/:id' will render the static files.
+
+On load, the component will make another get request to '/get-author/:id' to search the database for an author with the provided id value. Once that data is returned, the component will update its state with the retrieved information.
+
+The bio section of the author component by default truncates to 180 characters, which will switch to the full bio when the user clicks the 'More' link.
 
 ## Requirements
 
@@ -39,3 +43,17 @@ npm install
 ```
 
 Download and install Postgresql per installation instructions (here)[https://www.postgresql.org/download/]
+
+Postgres configuration object have the following structure:
+```json
+{
+  database: database name,
+  host: host ip,
+  port: potgres port number,
+  login: postgres login username,
+  password: postgres password
+}
+```
+Build the webpack bundle with ```sh npm run build``` and start the service with ```sh npm start```
+
+Visit the service ip at the '/db/init' route to initialize blank tables before running ```sh npm run seed``` to seed the database with fake data.

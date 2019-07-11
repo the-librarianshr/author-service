@@ -9,6 +9,11 @@ const cors = require('cors');
 app.use(morgan('dev'));
 app.use(cors());
 
+app.get('/db/init', (req, res) => {
+  db.initialize();
+  res.end();
+});
+
 app.get('/get-author/:id', (req, res) => {
   let id = req.params.id;
   db.getAuthorById(id, (err, author) => {
