@@ -25,14 +25,14 @@ class Author extends React.Component {
       url: `http://localhost:3002/get-author/${this.props.id}`,
       contentType: 'application/json',
       success: (author) => {
-        let truncatedBio = author.bio.slice(0, 180);
+        let truncatedBio = author.bio.slice(0, 180) + '...';
         this.setState({
           firstName: author.firstname,
           lastName: author.lastname,
           fullBio: author.bio,
           avatar: author.avatar,
           followers: author.followers,
-          truncBio: truncatedBio + '...',
+          truncBio: truncatedBio,
           bio: truncatedBio
         });
       }
@@ -46,8 +46,7 @@ class Author extends React.Component {
         bio: this.state.fullBio,
         truncated: false
       });
-      console.log(event.target);
-      event.target.innerHTML = '';
+      event.target.parentElement.removeChild(event.target);
     }
   }
 
@@ -61,7 +60,7 @@ class Author extends React.Component {
             <div className="followers">Followers: {this.state.followers}</div>
           </div>
         </div>
-        <div>{this.state.bio} <a href="#" onClick={this.toggleTrunc}>More</a></div>
+        <div>{this.state.bio} <a href="#" onClick={this.toggleTrunc} id="more-btn">More</a></div>
       </div>
     );
   }
