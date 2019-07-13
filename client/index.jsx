@@ -62,8 +62,8 @@ class App extends React.Component {
   }
 }
 
-let authorID = document.URL.split('/');
-authorID = authorID.filter(element => element !== '');
-authorID = Number(authorID[authorID.length - 1]);
+let id = document.URL.split('/');
+id = id.filter(element => element !== '');
+id = Number(id[id.length - 1]);
 
-ReactDOM.render(<App id={authorID} />, document.getElementById('author-app'));
+ReactDOM.render(<App id={id} />, document.getElementById('author-app'));

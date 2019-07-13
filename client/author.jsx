@@ -17,18 +17,26 @@ class Author extends React.Component {
   componentDidMount() {
     $.ajax({
       method: 'GET',
-      url: `http://localhost:3002/get-author/${this.props.id}`,
+      url: `http://localhost:3030/${this.props.id}`,
       contentType: 'application/json',
-      success: (author) => {
-        this.setState({
-          firstName: author.firstname,
-          lastName: author.lastname,
-          bio: author.bio,
-          avatar: author.avatar,
-          followers: author.followers
+      success: (book) => {
+        console.log(book);
+        $.ajax({
+          method: 'GET',
+          url: `http://localhost:3002/get-author/${book[0].author_id}`,
+          contentType: 'application/json',
+          success: (author) => {
+            this.setState({
+              firstName: author.firstname,
+              lastName: author.lastname,
+              bio: author.bio,
+              avatar: author.avatar,
+              followers: author.followers
+            });
+          }
         });
       }
-    });
+    })
   }
 
   render () {
