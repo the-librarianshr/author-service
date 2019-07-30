@@ -27,3 +27,10 @@ dist/
 /public/bundle.js
 config.js
 /database/seed.sql
+.env
+*.tar
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
