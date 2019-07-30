@@ -22,15 +22,16 @@ class Author extends React.Component {
   componentDidMount() {
     $.ajax({
       method: 'GET',
-      url: `http://localhost:3030/${this.props.id}`,
+      url: `http://18.223.254.113:3030/${this.props.id}`,
       contentType: 'application/json',
       success: (book) => {
         console.log(book);
         $.ajax({
           method: 'GET',
-          url: `http://localhost:3002/get-author/${book[0].author_id}`,
+          url: `http://13.57.54.199:3002/get-author/${book[0].author_id}`,
           contentType: 'application/json',
           success: (author) => {
+            console.log(author);
             let truncatedBio = author.bio.slice(0, 180) + '...';
             this.setState({
               firstName: author.firstname,
@@ -41,6 +42,25 @@ class Author extends React.Component {
               truncBio: truncatedBio,
               bio: truncatedBio
             });
+          },
+          error: function (jqXHR, exception) {
+            var msg = '';
+           if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            console.log(msg);
           }
         });
       }
