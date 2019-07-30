@@ -11,7 +11,7 @@
     "seed": "node ./database/seed-script.js",
     "build": "webpack -d --watch",
     "test": "jest --coverage",
-    "start": "nodemon server/index.js"
+    "start": "node server/index.js"
   },
   "dependencies": {
     "@babel/cli": "^7.4.4",
@@ -32,7 +32,7 @@
     "pg-promise": "^8.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "styled-components": "^4.3.2",
+    "styled-components": "4.3.1",
     "webpack": "^4.34.0"
   },
   "devDependencies": {
