@@ -24,6 +24,7 @@ class Author extends React.Component {
       method: 'GET',
       url: `http://18.223.254.113/${this.props.id}`,
       contentType: 'application/json',
+      crossDomain: true,
       success: (book) => {
         console.log(book);
         $.ajax({
