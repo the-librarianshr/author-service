@@ -22,7 +22,7 @@ class Author extends React.Component {
   componentDidMount() {
     $.ajax({
       method: 'GET',
-      url: `http://18.223.254.113/${this.props.id}`,
+      url: `http://18.223.254.113/book/${this.props.id}`,
       contentType: 'application/json',
       crossDomain: true,
       success: (book) => {
