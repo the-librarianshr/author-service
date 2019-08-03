@@ -26,13 +26,11 @@ class Author extends React.Component {
       contentType: 'application/json',
       crossDomain: true,
       success: (book) => {
-        console.log(book);
         $.ajax({
           method: 'GET',
           url: `http://13.57.54.199/get-author/${book[0].author_id}`,
           contentType: 'application/json',
           success: (author) => {
-            console.log(author);
             let truncatedBio = author.bio.slice(0, 180) + '...';
             this.setState({
               firstName: author.firstname,
@@ -89,7 +87,7 @@ class Author extends React.Component {
             <div className="followers">Followers: {this.state.followers}</div>
           </div>
         </div>
-        <div>{this.state.bio} <a href="#" onClick={this.toggleTrunc} id="more-btn">More</a></div>
+        <div className="bio">{this.state.bio}<a href="#" onClick={this.toggleTrunc} id="more-btn"> More</a></div>
       </div>
     );
   }
